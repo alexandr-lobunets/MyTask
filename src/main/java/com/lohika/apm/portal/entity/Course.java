@@ -1,10 +1,17 @@
 package com.lohika.apm.portal.entity;
 
-/**
- * Created by alobunets on 2/1/2017.
- */
+import org.springframework.data.annotation.Id;
+
+
 public class Course {
 
+    @Id
     private int courseId;
-    private int title;
+    private String title;
+
+    public Course(){}
+
+    public Course(String title){
+        this.title = title;
+    }
 }

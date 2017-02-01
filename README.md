@@ -1,5 +1,5 @@
 # MyTask
-Portal with students and their marks
+Portal with students and their grades
 
 
 Requirements:

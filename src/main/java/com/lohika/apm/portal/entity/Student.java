@@ -1,13 +1,17 @@
 package com.lohika.apm.portal.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+@Document(collection = "students")
 public class Student {
 
     @Id
-    private int id;
-    private String firstName;
-    private String lastName;
+    private String id;
+    @Field("firstName")
+    String firstName;
+    String lastName;
 
     public Student(){}
 
@@ -22,5 +26,5 @@ public class Student {
                 "Student [id=%s, firstName='%s', lastName='%s']",
                 id, firstName, lastName);
     }
-    
+
 }

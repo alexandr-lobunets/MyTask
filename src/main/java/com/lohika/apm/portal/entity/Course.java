@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 public class Course {
 
     @Id
-    private int courseId;
+    private String courseId;
     private String title;
 
     public Course(){}

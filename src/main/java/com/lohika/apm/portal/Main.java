@@ -1,11 +1,16 @@
 package com.lohika.apm.portal;
 
 import com.lohika.apm.portal.entity.Student;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@SpringBootApplication
 
 public class Main {
     @RequestMapping("/")
@@ -14,9 +19,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        SpringApplication.run(D.class, args);
-        ApplicationContext ctx = new GenericXmlApplicationContext("Beans.xml");
-        MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
+        SpringApplication.run(Main.class, args);
+//        ApplicationContext ctx = new GenericXmlApplicationContext("Beans.xml");
+//        MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
+
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
+        MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
+
 
         Student student = new Student("sssF", "sssL");
         mongoOperation.save(student);

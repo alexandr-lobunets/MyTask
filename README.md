@@ -16,7 +16,10 @@ http://dev-pages.info/how-to-run-spring-boot-and-mongodb-in-docker-container/
 
 
 
-docker build test .
-docker network create spring_demo_net
-docker run --name spring-demo-mongo --network=spring_demo_net -v /home/ubuntu/mongo-data:/data/db -p 27017:27017 -d mongo
-docker run test --network=spring_demo_net -p 8080:8080
+docker build my_task .
+
+docker network create task_net
+
+docker run --name spring-demo-mongo --network=task_net -v /home/ubuntu/mongo-data:/data/db -d mongo
+
+docker run test --network=task_net -p 8080:8080

@@ -2,31 +2,25 @@ package com.lohika.apm.portal;
 
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.stereotype.Component;
 
 
-@Configuration
-//@PropertySource("classpath:application.properties")
+//@Configuration
 public class SpringMongoConfig1 {
 
-//    private final MongoDbFactory mongo;
-////
-//    @Autowired
-//    public SpringMongoConfig1(MongoDbFactory mongo) {
-//        this.mongo = mongo;
-//    }
-//        //  ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-//        //  MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
 
-//    private final String MONGO_DB_HOST = "myd-vm20378.hpeswlab.net";
-    private final String MONGO_DB_HOST = "spring-demo-mongo";
-    private final String MONGO_DB_NAME = "test2";
+
+    private final String MONGO_DB_HOST = "myd-vm20378.hpeswlab.net";
+//    private final String MONGO_DB_HOST = "spring-demo-mongo";
+    private final String MONGO_DB_NAME = "test";
     private final int MONGO_DB_PORT = 27017;
 
 
@@ -39,9 +33,10 @@ public class SpringMongoConfig1 {
 
     public @Bean
     MongoTemplate mongoTemplate() throws Exception{
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
-        return mongoTemplate;
+        return new MongoTemplate(mongoDbFactory());
     }
+
+
 
 
 

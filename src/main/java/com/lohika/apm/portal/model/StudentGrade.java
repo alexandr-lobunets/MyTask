@@ -1,4 +1,4 @@
-package com.lohika.apm.portal.entity;
+package com.lohika.apm.portal.model;
 
 
 import org.springframework.data.annotation.Id;

@@ -1,7 +1,6 @@
 package com.lohika.apm.portal.services;
 
 import com.lohika.apm.portal.model.Course;
-import com.lohika.apm.portal.model.Student;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;

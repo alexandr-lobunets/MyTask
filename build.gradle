@@ -27,6 +27,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-mongodb:1.5.1.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-security:1.5.1.RELEASE")
     compile("org.thymeleaf:thymeleaf-spring4:3.0.3.RELEASE")
+    compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
 //    compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 //    testCompile group: 'junit', name: 'junit', version: '4.11'

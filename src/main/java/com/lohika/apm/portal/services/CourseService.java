@@ -2,6 +2,7 @@ package com.lohika.apm.portal.services;
 
 import com.lohika.apm.portal.model.Course;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.math.BigInteger;
 
@@ -14,6 +15,10 @@ public class CourseService extends LocalService {
 
     BigInteger getCourseId(String name){
         return mongoOperations.findOne(query(where("title").is(name)), Course.class).getCourseId();
+    }
+
+    String getCourseName(BigInteger id){
+        return mongoOperations.findOne(query(where("id").is(id)), Course.class).getTitle();
     }
 
 

@@ -54,6 +54,19 @@ public class Student {
                 );
     }
 
+    public String getLastName(){
+        return this.lastName;
+    }
+
+    public String getFirstName(){
+        return this.firstName;
+    }
+
+    public String getBirthDate(){
+        return new SimpleDateFormat("dd-MMM-yyyy").format(this.birthDate);
+    }
+
+
 
 
 }

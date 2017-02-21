@@ -1,6 +1,7 @@
 package com.lohika.apm.portal;
 
 import com.lohika.apm.portal.config.SpringMongoConfig1;
+import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.model.Student;
 import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
@@ -13,6 +14,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -58,13 +61,19 @@ public class Main {
         System.out.println("+++++++++++++++++");
         studentService.dropCollection("courses");
 
-        String dateInString = "07-Jun-2013";
+        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
 
-        courseService.createCourse("mathematics");
-        courseService.createCourse("biology");
+//        courseService.createCourse("mathematics");
+//        courseService.createCourse("biology");
 
-        studentService.createNewStudent("Dmitriy", "Butakov", dateInString, "biology");
-        studentService.createNewStudent("Dmitriy", "Goryachuk", dateInString, "mathematics");
+//        studentService.createNewStudent("Dmitriy", "Butakov", dateInString, "biology");
+//        studentService.createNewStudent("Dmitriy", "Goryachuk", dateInString, "mathematics");
+        List<Course> courses = new ArrayList<>();
+        courses.add(new Course("mathematics", 4));
+        courses.add(new Course("literature", 5));
+        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
+            courses.add(new Course("physics", 2));
+        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
 
         List<Student> students = studentService.findByLastFirstName("Butakov");
         System.out.println("Find: " + students.get(0));

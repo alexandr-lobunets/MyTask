@@ -13,13 +13,13 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 public class CourseService extends LocalService {
 
 
-    BigInteger getCourseId(String name){
-        return mongoOperations.findOne(query(where("title").is(name)), Course.class).getCourseId();
-    }
+//    BigInteger getCourseId(String name){
+//        return mongoOperations.findOne(query(where("title").is(name)), Course.class).getCourseId();
+//    }
 
-    String getCourseName(BigInteger id){
-        return mongoOperations.findOne(query(where("id").is(id)), Course.class).getTitle();
-    }
+//    String getCourseName(BigInteger id){
+//        return mongoOperations.findOne(query(where("id").is(id)), Course.class).getTitle();
+//    }
 
 
     public void createCourse(String courseName){

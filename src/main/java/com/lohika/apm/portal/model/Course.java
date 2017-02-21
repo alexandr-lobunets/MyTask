@@ -5,34 +5,40 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigInteger;
 
-@Document(collection = "courses")
+//@Document(collection = "courses")
 public class Course {
 
+    private String courseName;
 
-
-    @Id
-    private BigInteger courseId;
-    private String title;
+    private int courseGrade;
 
     public Course(){}
 
-    public Course(String title){
-        this.title = title;
-    }
-    public BigInteger getCourseId() {
-        return courseId;
+    public Course(String courseName){
+        this.courseName = courseName;
     }
 
-    public void setCourseId(BigInteger courseId) {
-        this.courseId = courseId;
+    public Course(String courseName, int courseGrade){
+        this.courseName = courseName;
+        this.courseGrade = courseGrade;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
+
+    public int getCourseGrade() {
+        return courseGrade;
+    }
+
+    public void setCourseGrade(int courseGrade) {
+        this.courseGrade = courseGrade;
+    }
+
+
 
 }

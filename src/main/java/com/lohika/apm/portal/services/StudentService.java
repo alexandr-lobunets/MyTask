@@ -1,11 +1,13 @@
 package com.lohika.apm.portal.services;
 
 
+import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -19,9 +21,12 @@ public class StudentService extends LocalService{
     private CourseService courseService;
 
     @ModelAttribute("addStudent")
-    public void createNewStudent(String firstName, String lastName, String date, String courseName){
-        Student student = new Student(firstName, lastName, convertStrToDate(date),
-                courseService.getCourseId(courseName));
+    public void createNewStudent(String firstName, String lastName, LocalDate date, List<Course> courses){
+        Student student = new Student(firstName, lastName, date,
+//                convertStrToDate(date),
+//                ,courseService.getCourseId(courseName)
+                courses
+        );
         mongoOperations.save(student);
     }
 

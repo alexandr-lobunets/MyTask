@@ -3,12 +3,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Spring Thyme Seed Starter Manager</title>
+    <title>Demo project - Students</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/stsm.css" th:href="@{/css/stsm.css}"/>
+    <!--<link rel="stylesheet" type="text/css" media="all" href="../../css/stsm.css" th:href="@{/css/stsm.css}"/>-->
+    <!-- Bootstrap -->
+    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
 </head>
 
 <body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!--<div>-->
     <!--<img src="../../images/stsmlogo.png" alt="STSM logo" title="STSM logo"-->
@@ -143,22 +147,22 @@
 
 <!--</div>-->
 
-<!--/*@thymesVar id="students" type="com.lohika.apm.portal.services.StudentService"*/-->
+<div>
 
-
-<tr th:each="student : ${students}">
-    <!--/*@thymesVar id="id" type="com.lohika.apm.portal.model.Student"*/-->
-    <!--/*@thymesVar id="id" type="com.lohika.apm.portal.model.Student"*/-->
-    <!--<td th:text="${student.id}">1</td>-->
-    <!--/*@thymesVar id="lastName" type="com.lohika.apm.portal.model.Student"*/-->
-    <td th:text="${{student.getLastName()}}">Title ...</td>
-    <td th:text="${{student.getFirstName()}}">Text ...</td>
-    <td th:text="${{student.getBirthDate()}}">Text ...</td>
-    <td th:text="${{student.getBirthDate()}}">Text ...</td>
-    <!--<td th:text="${{${courseService}.getCourseName(student.getClassId())}}">Text ...</td>-->
-    <!--<td th:text="${{courseService.getCourseName(1)}}">Text ...</td>-->
-</tr>
-
+<table class="table">
+    <caption>Students</caption>
+    <tr><td>Last Name</td><td>First Name</td><td>Birth date</td><td>Course</td></tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${{student.getLastName()}}">Title ...</td>
+        <td th:text="${{student.getFirstName()}}">Text ...</td>
+        <td th:text="${{student.getBirthDate()}}">Text ...</td>
+        <td th:each="course : ${student.getCourses()}">
+            <br th:text="${{course.getCourseName()}}">Title ...</br>
+            <br th:text="${{course.getCourseGrade()}}">Title ...</br>
+        </td>
+    </tr>
+</table>
+</div>
 
 </body>
 </html>

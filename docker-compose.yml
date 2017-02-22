@@ -1,0 +1,22 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:3.4.2
+    ports:
+      - "27017:27017"
+    command: mongod --smallfiles
+
+  portalservice:
+    image: frolvlad/alpine-oraclejdk8:slim
+    working_dir: /app
+    volumes:
+      - ./build/libs:/app
+    command: java -jar /app/my-task-0.1.0.jar
+    ports:
+      - "8080:8080"
+    links:
+      - mongodb
+#  environment:
+#    SPRING_DATA_MONGODB_URI: mongodb://mongodb/userregistration
+#    SPRING_RABBITMQ_HOST: rabbitmq
+#    SPRING_APPLICATION_NAME: registration-service

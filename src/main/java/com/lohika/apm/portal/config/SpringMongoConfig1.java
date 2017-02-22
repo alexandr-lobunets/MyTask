@@ -1,6 +1,7 @@
 package com.lohika.apm.portal.config;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -20,16 +21,16 @@ import java.net.UnknownHostException;
 @EnableMongoRepositories("com.lohika.apm.portal.repository")
 public class SpringMongoConfig1 {
 
-//    private final String MONGO_DB_HOST = "myd-vm20378.hpeswlab.net";
-    private final String MONGO_DB_HOST = "localhost";
-    private final String MONGO_DB_NAME = "test";
+    private final String MONGO_DB_HOST = "mongod";
+    private final String MONGO_DB_NAME = "portal";
     private final int MONGO_DB_PORT = 27017;
 
     public @Bean
     MongoDbFactory mongoDbFactory() throws Exception{
 //        return new SimpleMongoDbFactory(new MongoClient(), "test");
 //        return new SimpleMongoDbFactory(new MongoClient(MONGO_DB_HOST, MONGO_DB_PORT), MONGO_DB_NAME);
-        return new SimpleMongoDbFactory(new MongoClient(), MONGO_DB_NAME);
+//        return new SimpleMongoDbFactory(new MongoClient(), MONGO_DB_NAME);
+        return new SimpleMongoDbFactory(new MongoClientURI("mongodb://mongodb/portal"));
     }
 
     public @Bean(name={"mongoTemplate","mongoOperations"})

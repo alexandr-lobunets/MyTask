@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,11 +25,11 @@ import java.util.List;
 @SpringBootApplication
 public class Main {
 
-   private ApplicationContext applicationContext;
+   private ApplicationContext context;
 
     public void setApplicationContext(final ApplicationContext applicationContext)
             throws BeansException {
-        this.applicationContext = applicationContext;
+        this.context = applicationContext;
     }
 
    private final String STUDENTS_COLLECTION_NAME = "students";
@@ -54,7 +55,7 @@ public class Main {
     public ApplicationRunner go()  {
         return args ->{
         System.out.println("Clean db");
-            applicationContext =  new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
+        context =  new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
         studentService.dropCollection(STUDENTS_COLLECTION_NAME);
         System.out.println("+++++++++++++++++");
         studentService.dropCollection("courses");
@@ -77,5 +78,7 @@ public class Main {
 
         System.out.println(studentService.findAll(STUDENTS_COLLECTION_NAME).get(0));};
     }
+
+
 
 }

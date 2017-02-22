@@ -1,11 +1,6 @@
 package com.lohika.apm.portal.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigInteger;
-
-//@Document(collection = "courses")
 public class Course {
 
     private String courseName;

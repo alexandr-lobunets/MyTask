@@ -17,16 +17,10 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Service
 public class StudentService extends LocalService{
 
-    @Autowired
-    private CourseService courseService;
 
     @ModelAttribute("addStudent")
     public void createNewStudent(String firstName, String lastName, LocalDate date, List<Course> courses){
-        Student student = new Student(firstName, lastName, date,
-//                convertStrToDate(date),
-//                ,courseService.getCourseId(courseName)
-                courses
-        );
+        Student student = new Student(firstName, lastName, date, courses);
         mongoOperations.save(student);
     }
 
@@ -48,7 +42,4 @@ public class StudentService extends LocalService{
     public List<Student> findByLastFirstName(String lastName){
         return this.mongoOperations.find(query(where("lastName").is(lastName)), Student.class);
     }
-
-
-
 }

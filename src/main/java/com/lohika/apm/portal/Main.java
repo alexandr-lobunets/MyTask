@@ -45,8 +45,6 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-
-
     @Bean
     public AnnotationConfigApplicationContext configApplicationContext(){
         return new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
@@ -63,11 +61,6 @@ public class Main {
 
         LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
 
-//        courseService.createCourse("mathematics");
-//        courseService.createCourse("biology");
-
-//        studentService.createNewStudent("Dmitriy", "Butakov", dateInString, "biology");
-//        studentService.createNewStudent("Dmitriy", "Goryachuk", dateInString, "mathematics");
         List<Course> courses = new ArrayList<>();
         courses.add(new Course("mathematics", 4));
         courses.add(new Course("literature", 5));
@@ -83,12 +76,6 @@ public class Main {
         System.out.println("=========================");
 
         System.out.println(studentService.findAll(STUDENTS_COLLECTION_NAME).get(0));};
-
     }
-
-//    @Deprecated
-//    MongoOperations mongoOperations(){
-//        return (MongoOperations) applicationContext.getBean("mongoTemplate");
-//    }
 
 }

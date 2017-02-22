@@ -14,7 +14,6 @@ import java.util.List;
 
 
 @Controller
-//@ResponseBody
 public class HelloController {
 
     @Autowired
@@ -37,8 +36,6 @@ public class HelloController {
 
     @RequestMapping("/studentmng")
     public String showAllStudents(Model model) {
-//        List<Student> ff = studentService.findAll("students");
-//        System.out.println("Size = " + ff.size());
         model.addAttribute("students", studentService.findAll("students"));
         model.addAttribute(courseService);
         return "studentmng";

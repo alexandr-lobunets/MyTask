@@ -18,5 +18,4 @@ services:
       - mongodb
 #  environment:
 #    SPRING_DATA_MONGODB_URI: mongodb://mongodb/userregistration
-#    SPRING_RABBITMQ_HOST: rabbitmq
 #    SPRING_APPLICATION_NAME: registration-service

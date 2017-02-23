@@ -15,14 +15,4 @@ public abstract class LocalService {
     @Autowired
     public MongoOperations mongoOperations;
 
-    public Date convertStrToDate(String str){
-        Date date = null;
-        DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        try {
-            date = formatter.parse(str);
-        } catch (ParseException e) {
-            System.out.println(e.getMessage());
-        }
-        return date;
-    }
 }

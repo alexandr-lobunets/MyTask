@@ -34,12 +34,11 @@ public class Student {
         return String.format(
                 "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s']",
                 id, firstName, lastName,
-                birthDate
-                );
+                birthDate);
     }
 
     public List<Course> getCourses() {
-        return courses;
+        return this.courses;
     }
 
     public void setCourses(List<Course> courses) {

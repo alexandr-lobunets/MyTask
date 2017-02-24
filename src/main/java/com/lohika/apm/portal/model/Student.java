@@ -57,4 +57,8 @@ public class Student {
         return birthDate;
     }
 
+    public BigInteger getId(){
+        return this.id;
+    }
+
 }

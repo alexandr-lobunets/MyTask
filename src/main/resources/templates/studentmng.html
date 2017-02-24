@@ -5,29 +5,29 @@
 <head>
     <title>Demo project - Students</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!--<link rel="stylesheet" type="text/css" media="all" href="../../css/stsm.css" th:href="@{/css/stsm.css}"/>-->
-    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/main.css" th:href="@{/css/main.css}"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
 </head>
 
 <body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script>
+    function rowClicked(value) {
+        location.href = "student?param=" + value;
+    }
+</script>
 
 <div>
 
 <table class="table table-striped">
     <caption>Students</caption>
     <tr><th>Last Name</th><th>First Name</th><th>Birth date</th></tr>
-    <tr th:each="student : ${students}">
+    <tr th:each="student : ${students}" th:onclick="'javascript:rowClicked(\'' + ${student.getId()} + '\');'">
         <td th:text="${{student.getLastName()}}">Title ...</td>
         <td th:text="${{student.getFirstName()}}">Text ...</td>
         <td th:text="${{student.getBirthDate()}}">Text ...</td>
-        <!--<td th:each="course : ${student.getCourses()}">-->
-            <!--<p th:text="${{course.getCourseName()}}">Title ...</p>-->
-            <!--<p th:text="${{course.getCourseGrade()}}">Title ...</p>-->
-        <!--</td>-->
+
     </tr>
 </table>
 </div>

@@ -31,7 +31,7 @@ public class HelloController {
 
     @RequestMapping("/studentmng")
     public String showAllStudents(Model model) {
-        model.addAttribute("students", studentService.findAll("students"));
+        model.addAttribute("students", studentService.findAll());
         model.addAttribute(courseService);
         return "studentmng";
     }

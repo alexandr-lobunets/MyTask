@@ -1,6 +1,6 @@
 package com.lohika.apm.portal;
 
-import com.lohika.apm.portal.config.SpringMongoConfig1;
+//import com.lohika.apm.portal.config.SpringMongoConfig1;
 import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.model.Student;
 import com.lohika.apm.portal.services.CourseService;
@@ -25,16 +25,14 @@ import java.util.List;
 @SpringBootApplication
 public class Main {
 
-   private ApplicationContext context;
+    private ApplicationContext context;
+    private final StudentService studentService;
+    private final CourseService courseService;
 
     public void setApplicationContext(final ApplicationContext applicationContext)
             throws BeansException {
         this.context = applicationContext;
     }
-
-   private final String STUDENTS_COLLECTION_NAME = "students";
-    private final StudentService studentService;
-    private final CourseService courseService;
 
     @Autowired
     public Main(CourseService courseService, StudentService studentService) {
@@ -48,36 +46,37 @@ public class Main {
 
     @Bean
     public AnnotationConfigApplicationContext configApplicationContext(){
-        return new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
+//        return new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
+        return new AnnotationConfigApplicationContext();
     }
 
-//    @Bean
-//    public ApplicationRunner go()  {
-//        return args ->{
-//        System.out.println("Clean db");
+    @Bean
+    public ApplicationRunner go()  {
+        return args ->{
+        System.out.println("Clean db");
 //        context =  new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
-//        studentService.dropCollection(STUDENTS_COLLECTION_NAME);
-//        System.out.println("+++++++++++++++++");
-//        studentService.dropCollection("courses");
-//
-//        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
-//
-//        List<Course> courses = new ArrayList<>();
-//        courses.add(new Course("mathematics", 4));
-//        courses.add(new Course("literature", 5));
-//        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
-//            courses.add(new Course("physics", 2));
-//        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
-//
-//        List<Student> students = studentService.findByLastFirstName("Butakov");
-//        System.out.println("Find: " + students.get(0));
-//        students =  studentService.findByLastFirstName("Butakov", "Dmitriy");
-//        System.out.println("Find: " + students.get(0));
-//
-//        System.out.println("=========================");
-//
-//        System.out.println(studentService.findAll(STUDENTS_COLLECTION_NAME).get(0));};
-//    }
+        studentService.dropCollection();
+        System.out.println("+++++++++++++++++");
+        studentService.dropCollection();
+
+        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
+
+        List<Course> courses = new ArrayList<>();
+        courses.add(new Course("mathematics", 4));
+        courses.add(new Course("literature", 5));
+        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
+        courses.add(new Course("physics", 2));
+        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
+
+        List<Student> students = studentService.findByLastName("Butakov");
+        System.out.println("Find: " + students.get(0));
+        students =  studentService.findByLastFirstName("Butakov", "Dmitriy");
+        System.out.println("Find: " + students.get(0));
+
+        System.out.println("=========================");
+
+        System.out.println(studentService.findAll().get(0));};
+    }
 
 
 

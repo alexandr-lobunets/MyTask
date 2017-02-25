@@ -2,6 +2,7 @@ package com.lohika.apm.portal.tests;
 
 
 import com.lohika.apm.portal.model.Course;
+import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,13 +24,13 @@ public class HomeTests {
 
     @Autowired
     StudentService studentService;
-
-    private static String STUDENTS_COLLECTION_NAME = "students";
+    @Autowired
+    CourseService courseService;
 
     @Before
     public void cleanDb(){
-        studentService.dropCollection(STUDENTS_COLLECTION_NAME);
-        studentService.dropCollection("courses");
+        studentService.dropCollection();
+        courseService.dropCollection();
         LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
 
         List<Course> courses = new ArrayList<>();
@@ -42,7 +43,7 @@ public class HomeTests {
 
     @Test
     public void checkStudentCollectionLength() {
-        Assert.assertNotNull(studentService.findAll(STUDENTS_COLLECTION_NAME));
+        Assert.assertNotNull(studentService.findAll());
     }
 
     @Test

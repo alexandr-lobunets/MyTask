@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   mongodb:
     image: mongo:3.4.2
@@ -14,8 +14,10 @@ services:
     command: java -jar /app/my-task-0.1.0.jar
     ports:
       - "8080:8080"
+    depends_on:
+      - mongodb
     links:
       - mongodb
 #  environment:
-#    SPRING_DATA_MONGODB_URI: mongodb://mongodb/userregistration
+#    SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/studentsportal
 #    SPRING_APPLICATION_NAME: registration-service

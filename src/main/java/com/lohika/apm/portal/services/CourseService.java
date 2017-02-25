@@ -6,8 +6,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CourseService extends LocalService {
+    private final String COURSES_COLLECTION = "courses";
 
     public void createCourse(String courseName){
         mongoOperations.save(new Course(courseName));
+    }
+
+    /**
+     * Drop collection with name 'courses' with defined name
+     */
+
+    public void dropCollection(){
+        mongoOperations.dropCollection(COURSES_COLLECTION);
     }
 }

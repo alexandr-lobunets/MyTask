@@ -19,6 +19,7 @@ public class Student {
 
     @Field("lastName")
     private String lastName;
+    private String gender;
     private LocalDate birthDate;
     private List<Course> courses;
 
@@ -45,6 +46,11 @@ public class Student {
         this.courses = courses;
     }
 
+    /**
+     * Method returns student's last name
+     *
+     * @return student's last name
+     */
     public String getLastName(){
         return this.lastName;
     }
@@ -59,6 +65,10 @@ public class Student {
 
     public BigInteger getId(){
         return this.id;
+    }
+
+    public String getGender(){
+        return this.gender;
     }
 
 }

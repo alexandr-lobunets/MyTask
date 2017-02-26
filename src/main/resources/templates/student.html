@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Demo project - Students</title>
+    <title>Demo project - Student details</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" media="all" href="../../css/main.css" th:href="@{/css/main.css}"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
@@ -14,7 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
     function rowClicked(value) {
-        location.href = "student/" + value;
+        location.href = "student?param=" + value;
     }
 </script>
 
@@ -25,12 +25,12 @@
     <!-- Table -->
     <table class="table table-striped">
         <caption>Students</caption>
-        <tr><th>Last Name</th><th>First Name</th><th>Birth date</th></tr>
-        <tr th:each="student : ${students}" th:onclick="'javascript:rowClicked(\'' + ${student.getId()} + '\');'">
-            <td th:text="${{student.getLastName()}}">Title ...</td>
-            <td th:text="${{student.getFirstName()}}">Text ...</td>
-            <td th:text="${{student.getBirthDate()}}">Text ...</td>
-
+        <tr><th>Last Name</th><th>First Name</th><th>Birth date</th><th>Gender</th></tr>
+        <tr>
+            <th th:text="${{student.getLastName()}}">.</th>
+            <th th:text="${{student.getFirstName()}}">.</th>
+            <th th:text="${{student.getBirthDate()}}">.</th>
+            <th th:text="${{student.getGender()}}">.</th>
         </tr>
     </table>
 </div>

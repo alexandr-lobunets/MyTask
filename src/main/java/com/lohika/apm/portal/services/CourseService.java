@@ -13,7 +13,7 @@ public class CourseService extends LocalService {
     }
 
     /**
-     * Drop collection with name 'courses' with defined name
+     * Drop collection with name 'courses'
      */
 
     public void dropCollection(){

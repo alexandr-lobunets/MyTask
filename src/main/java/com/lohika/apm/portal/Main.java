@@ -1,19 +1,15 @@
 package com.lohika.apm.portal;
 
-//import com.lohika.apm.portal.config.SpringMongoConfig1;
 import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.model.Student;
 import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,20 +21,8 @@ import java.util.List;
 @SpringBootApplication
 public class Main {
 
-    private ApplicationContext context;
-    private final StudentService studentService;
-    private final CourseService courseService;
-
-    public void setApplicationContext(final ApplicationContext applicationContext)
-            throws BeansException {
-        this.context = applicationContext;
-    }
-
     @Autowired
-    public Main(CourseService courseService, StudentService studentService) {
-        this.courseService = courseService;
-        this.studentService = studentService;
-    }
+    private StudentService studentService;
 
     public static void main(String[] args){
         SpringApplication.run(Main.class, args);
@@ -46,38 +30,35 @@ public class Main {
 
     @Bean
     public AnnotationConfigApplicationContext configApplicationContext(){
-//        return new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
         return new AnnotationConfigApplicationContext();
     }
 
-    @Bean
-    public ApplicationRunner go()  {
-        return args ->{
-        System.out.println("Clean db");
-//        context =  new AnnotationConfigApplicationContext(SpringMongoConfig1.class);
-        studentService.dropCollection();
-        System.out.println("+++++++++++++++++");
-        studentService.dropCollection();
-
-        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
-
-        List<Course> courses = new ArrayList<>();
-        courses.add(new Course("mathematics", 4));
-        courses.add(new Course("literature", 5));
-        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
-        courses.add(new Course("physics", 2));
-        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
-
-        List<Student> students = studentService.findByLastName("Butakov");
-        System.out.println("Find: " + students.get(0));
-        students =  studentService.findByLastFirstName("Butakov", "Dmitriy");
-        System.out.println("Find: " + students.get(0));
-
-        System.out.println("=========================");
-
-        System.out.println(studentService.findAll().get(0));};
-    }
-
-
+//    @Bean
+//    public ApplicationRunner go()  {
+//        return args ->{
+//        System.out.println("Clean db");
+//        studentService.dropCollection();
+//        System.out.println("+++++++++++++++++");
+//        studentService.dropCollection();
+//
+//        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
+//
+//        List<Course> courses = new ArrayList<>();
+//        courses.add(new Course("mathematics", 4));
+//        courses.add(new Course("literature", 5));
+//        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
+//        courses.add(new Course("physics", 2));
+//        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
+//
+//        List<Student> students = studentService.findByLastName("Butakov");
+//        System.out.println("Find: " + students.get(0));
+//
+//        System.out.println("Find: " + studentService.findByLastFirstName("Butakov", "Dmitriy"));
+//
+//        System.out.println("=========================");
+//
+//        System.out.println(studentService.findAll().get(0));
+//        };
+//    }
 
 }

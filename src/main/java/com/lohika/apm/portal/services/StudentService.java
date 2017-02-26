@@ -6,6 +6,7 @@ import com.lohika.apm.portal.model.Student;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -58,16 +59,20 @@ public class StudentService extends LocalService{
      *
      * @param lastName   student's first name
      * @param firstName  student's last name
-     * @return           list of students
+     * @return           student
      * @see              Student
      */
 
-    public List<Student> findByLastFirstName(String lastName, String firstName){
-        return this.mongoOperations.find(query(where("lastName").is(lastName).and("firstName").is(firstName)), Student.class);
+    public Student findByLastFirstName(String lastName, String firstName){
+        return this.mongoOperations.findOne(query(where("lastName").is(lastName).and("firstName").is(firstName)), Student.class);
     }
 
     public List<Student> findByLastName(String lastName){
         return this.mongoOperations.find(query(where("lastName").is(lastName)), Student.class);
+    }
+
+    public Student getStudentById(BigInteger id){
+        return this.mongoOperations.findOne(query(where("id").is(id)), Student.class);
     }
 
 }

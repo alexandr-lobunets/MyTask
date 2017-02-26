@@ -1,12 +1,11 @@
 package com.lohika.apm.portal.tests;
 
 
+
 import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,17 +17,28 @@ import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
+/**
+ * Integration tests for Test Task
+ *
+ * @author  Alexandr Lobunets
+ * @version 1.0
+ * @since   2017-02-26
+ */
+
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = {
+        "spring.data.mongodb.uri=mongodb://localhost:27017/portal"
+})
 public class HomeTests {
 
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
     @Autowired
-    CourseService courseService;
+    private CourseService courseService;
 
     @Before
-    public void cleanDb(){
+    public void setUp(){
+        cleanDb();
         studentService.dropCollection();
         courseService.dropCollection();
         LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
@@ -41,6 +51,15 @@ public class HomeTests {
         studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
     }
 
+    @After
+    public void tearDown(){
+       cleanDb();
+    }
+
+
+    /**
+     * High-cost test, must be refactored
+     */
     @Test
     public void checkStudentCollectionLength() {
         Assert.assertNotNull(studentService.findAll());
@@ -52,6 +71,18 @@ public class HomeTests {
         String lastName = "lName";
         LocalDate birthDate = LocalDate.now();
         studentService.createNewStudent(firstName, lastName, birthDate, null);
-        assertThat(studentService.findByLastFirstName(lastName, firstName).get(0).getBirthDate()).isEqualTo(birthDate);
+        assertThat(studentService.findByLastFirstName(lastName, firstName).getBirthDate()).isEqualTo(birthDate);
+    }
+
+    @Test @Ignore("need to implement a new method with delete user functionality")
+    public void checkUserDeletion(){
+        String firstName = "fName";
+        String lastName = "lName";
+    }
+
+
+    private void cleanDb(){
+        studentService.dropCollection();
+        courseService.dropCollection();
     }
 }

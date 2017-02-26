@@ -1,4 +1,4 @@
-# MyTask
+# MyTask <img src="https://travis-ci.org/alexandr-lobunets/MyTask.svg?branch=master"/>
 Portal with students and their grades
 
 

@@ -27,7 +27,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {
-        "spring.data.mongodb.uri=mongodb://localhost:27017/portal"
+        "spring.data.mongodb.uri=mongodb://mongodb:27017/portal"
 })
 public class HomeTests {
 

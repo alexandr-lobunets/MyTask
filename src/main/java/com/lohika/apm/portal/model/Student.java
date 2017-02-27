@@ -16,12 +16,13 @@ public class Student {
     private BigInteger id;
     @Field("firstName")
     private String firstName;
-
     @Field("lastName")
     private String lastName;
     private String gender;
     private LocalDate birthDate;
     private List<Course> courses;
+
+    public Student(){}
 
     public Student(String firstName, String lastName, LocalDate birthDate, List<Course> courses){
         this.firstName = firstName;
@@ -39,7 +40,7 @@ public class Student {
     }
 
     public List<Course> getCourses() {
-        return this.courses;
+        return courses;
     }
 
     public void setCourses(List<Course> courses) {
@@ -52,11 +53,11 @@ public class Student {
      * @return student's last name
      */
     public String getLastName(){
-        return this.lastName;
+        return lastName;
     }
 
     public String getFirstName(){
-        return this.firstName;
+        return firstName;
     }
 
     public LocalDate getBirthDate(){
@@ -64,11 +65,26 @@ public class Student {
     }
 
     public BigInteger getId(){
-        return this.id;
+        return id;
     }
 
     public String getGender(){
         return this.gender;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
 }

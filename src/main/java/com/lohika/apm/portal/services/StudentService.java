@@ -29,10 +29,15 @@ public class StudentService extends LocalService{
      * @see             Student
      */
 
-    @ModelAttribute("addStudent")
+//    @ModelAttribute("addStudent")
     public void createNewStudent(String firstName, String lastName,
                                  LocalDate birthDate, List<Course> courses){
         Student student = new Student(firstName, lastName, birthDate, courses);
+        mongoOperations.save(student);
+    }
+
+
+    public void saveStudent(Student student){
         mongoOperations.save(student);
     }
 

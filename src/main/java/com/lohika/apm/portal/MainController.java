@@ -1,15 +1,13 @@
 package com.lohika.apm.portal;
 
+import com.lohika.apm.portal.model.Student;
 import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 
 
@@ -44,6 +42,17 @@ public class MainController {
         model.addAttribute("student", studentService.getStudentById(id));
         return "student";
     }
+
+    @RequestMapping("/addstudent")
+    public String addStudent(@ModelAttribute Student student, Model model) {
+        return "addstudent";
+    }
+
+    @PostMapping(value = "/save")
+    public String processForm(Student student) {
+        studentService.saveStudent(student);
+        return "redirect:/student/" + student.getId() ;
+      }
 
 //    public void addViewControllers(ViewControllerRegistry registry) {
 //        registry.addViewController("/login").setViewName("login");

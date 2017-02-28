@@ -44,7 +44,7 @@ public class MainController {
     }
 
     @RequestMapping("/addstudent")
-    public String addStudent(@ModelAttribute Student student, Model model) {
+    public String addStudent(@ModelAttribute Student student) {
         return "addstudent";
     }
 

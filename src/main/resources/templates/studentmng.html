@@ -30,9 +30,13 @@
             <td th:text="${{student.lastName}}">Title ...</td>
             <td th:text="${{student.firstName}}">Text ...</td>
             <td th:text="${{student.birthDate}}">Text ...</td>
-
         </tr>
     </table>
+
+    <form action="#" th:action="@{'/addstudent'}" th:method="get" >
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit" class="btn btn-default">Create student</button>
+    </form>
 </div>
 
 

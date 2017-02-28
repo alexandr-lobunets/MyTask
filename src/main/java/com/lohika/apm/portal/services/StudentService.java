@@ -80,4 +80,8 @@ public class StudentService extends LocalService{
         return this.mongoOperations.findOne(query(where("id").is(id)), Student.class);
     }
 
+    public void deleteStudent(BigInteger id){
+        this.mongoOperations.remove(query(where("id").is(id)), Student.class);
+    }
+
 }

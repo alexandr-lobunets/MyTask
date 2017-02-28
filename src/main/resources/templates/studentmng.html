@@ -26,10 +26,10 @@
     <table class="table table-striped">
         <caption>Students</caption>
         <tr><th>Last Name</th><th>First Name</th><th>Birth date</th></tr>
-        <tr th:each="student : ${students}" th:onclick="'javascript:rowClicked(\'' + ${student.getId()} + '\');'">
-            <td th:text="${{student.getLastName()}}">Title ...</td>
-            <td th:text="${{student.getFirstName()}}">Text ...</td>
-            <td th:text="${{student.getBirthDate()}}">Text ...</td>
+        <tr th:each="student : ${students}" th:onclick="'javascript:rowClicked(\'' + ${student.id} + '\');'">
+            <td th:text="${{student.lastName}}">Title ...</td>
+            <td th:text="${{student.firstName}}">Text ...</td>
+            <td th:text="${{student.birthDate}}">Text ...</td>
 
         </tr>
     </table>

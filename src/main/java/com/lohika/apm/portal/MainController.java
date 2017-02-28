@@ -52,7 +52,14 @@ public class MainController {
     public String processForm(Student student) {
         studentService.saveStudent(student);
         return "redirect:/student/" + student.getId() ;
-      }
+    }
+
+    @DeleteMapping("/deletestudent/{id}")
+    public String deleteStudent(@PathVariable("id") BigInteger id){
+        studentService.deleteStudent(id);
+        return "redirect:/studentmng";
+    }
+
 
 //    public void addViewControllers(ViewControllerRegistry registry) {
 //        registry.addViewController("/login").setViewName("login");

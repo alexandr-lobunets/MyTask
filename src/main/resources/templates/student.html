@@ -12,11 +12,6 @@
 <body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-    function rowClicked(value) {
-        location.href = "student?param=" + value;
-    }
-</script>
 
 <div class="panel panel-default">
     <!-- Default panel contents -->
@@ -27,12 +22,20 @@
         <caption>Students</caption>
         <tr><th>Last Name</th><th>First Name</th><th>Birth date</th><th>Gender</th></tr>
         <tr>
-            <th th:text="${{student.getLastName()}}">.</th>
-            <th th:text="${{student.getFirstName()}}">.</th>
-            <th th:text="${{student.getBirthDate()}}">.</th>
-            <th th:text="${{student.getGender()}}">.</th>
+            <th th:text="${{student.lastName}}">.</th>
+            <!--<th th:text="${{student.getLastName()}}">.</th>-->
+            <th th:text="${{student.firstName}}">.</th>
+            <th th:text="${{student.birthDate}}">.</th>
+            <th th:text="${{student.gender}}">.</th>
         </tr>
     </table>
+
+
+<!-- Delete Student by id-->
+    <form action="#" th:action="@{'/deletestudent/{id}'(id=${student.id})}" th:method="delete" >
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit" class="btn btn-default">Delete</button>
+    </form>
 </div>
 
 

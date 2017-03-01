@@ -7,3 +7,4 @@ sudo: required
 
 services:
   - mongodb
+  - redis-server

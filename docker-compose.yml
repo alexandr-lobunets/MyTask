@@ -16,8 +16,12 @@ services:
       - "8080:8080"
     depends_on:
       - mongodb
+      - redis
     links:
       - mongodb
+
+  redis:
+    image: redis
 #  environment:
 #    SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/studentsportal
 #    SPRING_APPLICATION_NAME: registration-service

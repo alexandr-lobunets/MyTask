@@ -1,4 +1,4 @@
-# MyTask <img src="https://travis-ci.org/alexandr-lobunets/MyTask.svg?branch=master"/> [![CodeFactor](https://www.codefactor.io/repository/github/alexandr-lobunets/mytask/badge)](https://www.codefactor.io/repository/github/alexandr-lobunets/mytask)
+# MyTask <img src="https://travis-ci.org/alexandr-lobunets/MyTask.svg?branch=master"/>
 Portal with students and their grades
 
 

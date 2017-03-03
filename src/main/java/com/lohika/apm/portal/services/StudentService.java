@@ -29,7 +29,6 @@ public class StudentService extends LocalService{
      * @see             Student
      */
 
-//    @ModelAttribute("addStudent")
     public void createNewStudent(String firstName, String lastName,
                                  LocalDate birthDate, List<Course> courses){
         Student student = new Student(firstName, lastName, birthDate, courses);

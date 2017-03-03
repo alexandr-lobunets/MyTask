@@ -35,8 +35,6 @@ public class IntegrationTests {
 
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private CourseService courseService;
 
 
     /*
@@ -46,7 +44,7 @@ public class IntegrationTests {
     public void setUp(){
         cleanDb();
         studentService.dropCollection();
-        courseService.dropCollection();
+//        courseService.dropCollection();
         LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
         List<Course> courses = new ArrayList<>();
         courses.add(new Course("mathematics", 4));
@@ -91,6 +89,5 @@ public class IntegrationTests {
 
     private void cleanDb(){
         studentService.dropCollection();
-        courseService.dropCollection();
     }
 }

@@ -35,9 +35,9 @@
         <caption>Students</caption>
         <tr><th>Last Name</th><th>First Name</th><th>Birth date</th></tr>
         <tr th:each="student : ${students}" th:onclick="'javascript:rowClicked(\'' + ${student.id} + '\');'">
-            <td th:text="${{student.lastName}}">Title ...</td>
-            <td th:text="${{student.firstName}}">Text ...</td>
-            <td th:text="${{student.birthDate}}">Text ...</td>
+            <td th:text="${student.lastName}">Title ...</td>
+            <td th:text="${student.firstName}">Text ...</td>
+            <td th:text="${student.birthDate}">Text ...</td>
         </tr>
     </table>
 

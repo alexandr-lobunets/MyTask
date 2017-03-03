@@ -3,10 +3,12 @@ package com.lohika.apm.portal.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Document(collection = "students")
 public class Student {
@@ -20,6 +22,7 @@ public class Student {
     private String lastName;
     private String gender;
     private LocalDate birthDate;
+
     private List<Course> courses;
 
     public Student(){}
@@ -34,13 +37,13 @@ public class Student {
     @Override
     public String toString() {
         return String.format(
-                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s']",
+                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s', cources='%s']",
                 id, firstName, lastName,
-                birthDate);
+                birthDate, courses.stream().map(Object::toString).collect(Collectors.joining(", ")));
     }
 
     public List<Course> getCourses() {
-        return courses;
+        return this.courses;
     }
 
     public void setCourses(List<Course> courses) {
@@ -71,6 +74,7 @@ public class Student {
     public String getGender(){
         return this.gender;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

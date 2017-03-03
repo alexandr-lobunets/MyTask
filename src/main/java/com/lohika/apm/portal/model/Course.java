@@ -1,39 +1,43 @@
 package com.lohika.apm.portal.model;
 
+public  class Course {
 
-public class Course {
 
-    private String courseName;
-
-    private int courseGrade;
+    private String name;
+    private int grade;
 
     public Course(){}
 
-    public Course(String courseName){
-        this.courseName = courseName;
+    public Course(final String name){
+        this.name = name;
     }
 
-    public Course(String courseName, int courseGrade){
-        this.courseName = courseName;
-        this.courseGrade = courseGrade;
+    public Course(final String name, final int grade){
+        this.name = name;
+        this.grade = grade;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getName() {
+        return this.name;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setName(final String name) {
+        this.name = name;
     }
 
-    public int getCourseGrade() {
-        return courseGrade;
+    public int getGrade() {
+        return this.grade;
     }
 
-    public void setCourseGrade(int courseGrade) {
-        this.courseGrade = courseGrade;
+    public void setGrade(final int courseGrade) {
+        this.grade = courseGrade;
     }
 
-
+    @Override
+    public String toString() {
+        return String.format(
+                "Course [name=%s, courseGrade='%s']",
+                name, grade);
+    }
 
 }

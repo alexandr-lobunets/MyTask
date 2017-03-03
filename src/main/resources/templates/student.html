@@ -20,13 +20,18 @@
     <!-- Table -->
     <table class="table table-striped">
         <caption>Students</caption>
-        <tr><th>Last Name</th><th>First Name</th><th>Birth date</th><th>Gender</th></tr>
+        <tr><th>Last Name</th><th>First Name</th><th>Birth date</th><th>Gender</th><th>Courses</th></tr>
         <tr>
-            <th th:text="${{student.lastName}}">.</th>
+            <th th:text="${student.lastName}">.</th>
             <!--<th th:text="${{student.getLastName()}}">.</th>-->
-            <th th:text="${{student.firstName}}">.</th>
-            <th th:text="${{student.birthDate}}">.</th>
-            <th th:text="${{student.gender}}">.</th>
+            <th th:text="${student.firstName}">.</th>
+            <th th:text="${student.birthDate}">.</th>
+            <th th:text="${student.gender}">.</th>
+            <th th:each="course : ${student.courses}">
+               <!-- <th th:text="${{course.courseName}}">.</th>-->
+                <p th:text="${course.name}">.</p>
+                <p th:text="${course.grade}">.</p>
+            </th>
         </tr>
     </table>
 

@@ -34,7 +34,7 @@ dependencies {
     }
 //    compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+//    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 //    testCompile group: 'junit', name: 'junit', version: ${jUnitVersion}

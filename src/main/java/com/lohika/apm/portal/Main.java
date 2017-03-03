@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
 @SpringBootApplication
 public class Main {
 
@@ -33,32 +31,32 @@ public class Main {
         return new AnnotationConfigApplicationContext();
     }
 
-//    @Bean
-//    public ApplicationRunner go()  {
-//        return args ->{
-//        System.out.println("Clean db");
-//        studentService.dropCollection();
-//        System.out.println("+++++++++++++++++");
-//        studentService.dropCollection();
-//
-//        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
-//
-//        List<Course> courses = new ArrayList<>();
-//        courses.add(new Course("mathematics", 4));
-//        courses.add(new Course("literature", 5));
-//        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
-//        courses.add(new Course("physics", 2));
-//        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
-//
-//        List<Student> students = studentService.findByLastName("Butakov");
-//        System.out.println("Find: " + students.get(0));
-//
-//        System.out.println("Find: " + studentService.findByLastFirstName("Butakov", "Dmitriy"));
-//
-//        System.out.println("=========================");
-//
-//        System.out.println(studentService.findAll().get(0));
-//        };
-//    }
+    @Bean
+    public ApplicationRunner go()  {
+        return args ->{
+        System.out.println("Clean db");
+        studentService.dropCollection();
+        System.out.println("+++++++++++++++++");
+        studentService.dropCollection();
+
+        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
+
+        List<Course> courses = new ArrayList<>();
+        courses.add(new Course("mathematics", 4));
+        courses.add(new Course("literature", 5));
+        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
+        courses.add(new Course("physics", 2));
+        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
+
+        List<Student> students = studentService.findByLastName("Butakov");
+        System.out.println("Find: " + students.get(0));
+
+        System.out.println("Find: " + studentService.findByLastFirstName("Butakov", "Dmitriy"));
+
+        System.out.println("=========================");
+
+        System.out.println(studentService.findAll().get(0));
+        };
+    }
 
 }

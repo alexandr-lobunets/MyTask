@@ -6,7 +6,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'docker'
 apply plugin: 'jacoco'
-//apply plugin: "com.sourcemuse.mongo"
+apply plugin: 'docker-compose'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -37,7 +37,6 @@ dependencies {
 //    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-//    testCompile group: 'junit', name: 'junit', version: ${jUnitVersion}
     testCompile "junit:junit:${jUnitVersion}"
 }
 
@@ -61,16 +60,43 @@ bootRun {
 
 buildscript {
     repositories {
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
         classpath('se.transmode.gradle:gradle-docker:1.2')
+        classpath "com.avast.gradle:docker-compose-gradle-plugin:0.3.21"
 //        classpath "gradle.plugin.com.sourcemuse.gradle.plugin:gradle-mongo-plugin:1.0.0"
     }
+}
+
+dockerCompose.isRequiredBy(test) // hooks 'dependsOn composeUp' and 'finalizedBy composeDown'
+
+dockerCompose {
+    // useComposeFiles = ['docker-compose.yml', 'docker-compose.prod.yml'] // like 'docker-compose -f <file>'
+    // captureContainersOutput = true // prints output of all containers to Gradle output - very useful for debugging
+     stopContainers = true // doesn't call `docker-compose down` - useful for debugging
+     removeContainers = true
+    // removeImages = "None" // Other accepted values are: "All" and "Local"
+     removeVolumes = true
+    // projectName = 'my-project' // allow to set custom docker-compose project name (defaults to directory name)
+    // executable = '/path/to/docker-compose' // allow to set the path of the docker-compose executable (usefull if not present in PATH)
+    // dockerExecutable = '/path/to/docker' // allow to set the path of the docker executable (usefull if not present in PATH)
+    // environment.put 'BACKEND_ADDRESS', '192.168.1.100' // Pass environment variable to 'docker-compose' for substitution in compose file
+}
+
+test.doFirst {
+    // exposes "${serviceName}_HOST" and "${serviceName}_TCP_${exposedPort}" environment variables
+    // for example exposes "WEB_HOST" and "WEB_TCP_80" environment variables for service named `web` with exposed port `80`
+    dockerCompose.exposeAsEnvironment(test)
+    // exposes "${serviceName}.host" and "${serviceName}.tcp.${exposedPort}" system properties
+    // for example exposes "web.host" and "web.tcp.80" system properties for service named `web` with exposed port `80`
+    dockerCompose.exposeAsSystemProperties(test)
+    // get information about container of service `web` (declared in docker-compose.yml)
+    def webInfo = dockerCompose.servicesInfos.web
+    // pass host and exposed TCP port 80 as custom-named Java System properties
+//    systemProperty 'myweb.host', webInfo.host
+//    systemProperty 'myweb.port', webInfo.ports[80]
 }
 jacocoTestReport {
     reports {

@@ -2,7 +2,6 @@ package com.lohika.apm.portal.tests;
 
 
 import com.lohika.apm.portal.model.Course;
-import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -28,15 +27,14 @@ import static org.junit.Assert.assertNull;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = {
-        "spring.data.mongodb.uri=mongodb://localhost:27017/portal"
-})
+@SpringBootTest(
+        properties = {
+        "spring.data.mongodb.uri=mongodb://localhost:27017/portal"}
+        )
 public class IntegrationTests {
 
     @Autowired
     private StudentService studentService;
-
-
     /*
     should be refactored
      */
@@ -86,8 +84,8 @@ public class IntegrationTests {
         assertNull(studentService.getStudentById(studentId));
     }
 
-
     private void cleanDb(){
         studentService.dropCollection();
     }
+
 }

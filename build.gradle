@@ -58,7 +58,7 @@ task buildDocker(type: Docker, dependsOn: build) {
 
 compileJava.doFirst{
     copy {
-          from './src/main/docker/mongo'
+          from './src/main/docker/mongo-seed'
           into './build/libs'
           include '**/*.json'
     }

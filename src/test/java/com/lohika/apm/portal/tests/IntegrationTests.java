@@ -38,19 +38,17 @@ public class IntegrationTests {
     /*
     should be refactored
      */
-    @Before
-    public void setUp(){
-        cleanDb();
-        studentService.dropCollection();
-//        courseService.dropCollection();
-        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
-        List<Course> courses = new ArrayList<>();
-        courses.add(new Course("mathematics", 4));
-        courses.add(new Course("literature", 5));
-        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
-        courses.add(new Course("physics", 2));
-        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
-    }
+//    @Before
+//    public void setUp(){
+//        cleanDb();
+//        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
+//        List<Course> courses = new ArrayList<>();
+//        courses.add(new Course("mathematics", 4));
+//        courses.add(new Course("literature", 5));
+//        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
+//        courses.add(new Course("physics", 2));
+//        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
+//    }
 
     @After
     public void tearDown(){

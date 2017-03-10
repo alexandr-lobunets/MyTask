@@ -1,11 +1,22 @@
 version: '2'
 services:
   mongodb:
-    image: mongo:3.4.2
+    image: mongo
     hostname: db-mongo
     ports:
       - "27017:27017"
     command: mongod --smallfiles
+#    volumes:
+#      - ./build/libs:/app
+#    command: mongoimport --db portal --collection students --type json --file /app/students.json --jsonArray
+
+
+  mongo_seed:
+      image: mongo-seed/.
+      links:
+        - mongodb
+
+
 
   portalservice:
     image: frolvlad/alpine-oraclejdk8:slim
@@ -17,13 +28,13 @@ services:
       - "8080:8080"
     depends_on:
       - mongodb
-      - redis
+#      - redis
     links:
       - mongodb
 
-  redis:
-    image: redis
-    hostname: db-redis
+#  redis:
+#    image: redis
+#    hostname: db-redis
 #  environment:
 #    SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/studentsportal
 #    SPRING_APPLICATION_NAME: registration-service

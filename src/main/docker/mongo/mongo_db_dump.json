@@ -1,0 +1,4 @@
+[
+{"_id":{"$oid":"58b9414bda8ff9a4c86fdcc5"},"_class":"com.lohika.apm.portal.model.Student","firstName":"Dmitriy","lastName":"Butakov","birthDate":{"$date":"2012-01-02T22:00:00.000Z"},"courses":[{"name":"mathematics","courseGrade":4},{"name":"literature","courseGrade":5}]},
+{"_id":{"$oid":"58b9414bda8ff9a4c86fdcc6"},"_class":"com.lohika.apm.portal.model.Student","firstName":"Dmitriy","lastName":"Goryachuk","birthDate":{"$date":"2012-01-02T22:00:00.000Z"},"courses":[{"name":"mathematics","courseGrade":4},{"name":"literature","courseGrade":5},{"name":"physics","courseGrade":2}]}
+]

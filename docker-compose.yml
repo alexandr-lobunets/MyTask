@@ -6,10 +6,6 @@ services:
     ports:
       - "27017:27017"
     command: mongod --smallfiles
-#    volumes:
-#      - ./build/libs:/app
-#    command: mongoimport --db portal --collection students --type json --file /app/students.json --jsonArray
-
 
   mongo-seed:
     image: mongo
@@ -18,7 +14,9 @@ services:
     volumes:
       - ./build/libs:/seed-data
     command:
-      'bash -c "mongoimport --host mongodb --db portal --collection students --type json --file /seed-data/projects.json --jsonArray"'
+      'bash -c "mongoimport --host mongodb --db portal --collection students --type json --file /seed-data/students.json --jsonArray"'
+    depends_on:
+      - mongodb
 
 
 

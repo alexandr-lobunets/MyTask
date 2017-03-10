@@ -91,7 +91,7 @@ dockerCompose {
     // captureContainersOutput = true // prints output of all containers to Gradle output - very useful for debugging
      stopContainers = true // doesn't call `docker-compose down` - useful for debugging
      removeContainers = true
-    // removeImages = "None" // Other accepted values are: "All" and "Local"
+     removeImages = "All" // Def: "None". Other accepted values are: "All" and "Local"
      removeVolumes = true
     // projectName = 'my-project' // allow to set custom docker-compose project name (defaults to directory name)
     // executable = '/path/to/docker-compose' // allow to set the path of the docker-compose executable (usefull if not present in PATH)

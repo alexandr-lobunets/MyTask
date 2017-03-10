@@ -44,14 +44,22 @@ dependencies {
 task buildDocker(type: Docker, dependsOn: build) {
     push = false
     applicationName = jar.baseName
-    dockerfile = file('src/main/docker/Dockerfile')
+    dockerfile = file('src/main/docker/apps/Dockerfile')
     doFirst {
         copy {
             from jar
             into stageDir
         }
+        buildMongoDocker
     }
 }
+
+task buildMongoDocker(type: Docker) {
+    push = false
+    dockerfile = file('src/main/docker/mongo/Dockerfile')
+}
+
+
 // end::task[]
 bootRun {
     addResources = true

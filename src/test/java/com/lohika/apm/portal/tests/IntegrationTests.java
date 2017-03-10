@@ -1,7 +1,6 @@
 package com.lohika.apm.portal.tests;
 
 
-import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.services.StudentService;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -11,8 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -27,40 +25,22 @@ import static org.junit.Assert.assertNull;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(
+@SpringBootTest
+        (
         properties = {
-        "spring.data.mongodb.uri=mongodb://mongodb:27017/portal"}
+        "spring.data.mongodb.uri=mongodb://localhost:27017/portal"}
         )
 public class IntegrationTests {
 
     @Autowired
     private StudentService studentService;
-    /*
-    should be refactored
-     */
-//    @Before
-//    public void setUp(){
-//        cleanDb();
-//        LocalDate localDate = LocalDate.now().minusYears(5).minusMonths(2);
-//        List<Course> courses = new ArrayList<>();
-//        courses.add(new Course("mathematics", 4));
-//        courses.add(new Course("literature", 5));
-//        studentService.createNewStudent("Dmitriy", "Butakov", localDate, courses);
-//        courses.add(new Course("physics", 2));
-//        studentService.createNewStudent("Dmitriy", "Goryachuk", localDate, courses);
-//    }
-
-    @After
-    public void tearDown(){
-       cleanDb();
-    }
-
 
     /**
      * High-cost test, must be refactored
      */
     @Test
     public void checkStudentCollectionLength() {
+        System.out.printf("Length = " + studentService.findAll().size());
         assertNotNull(studentService.findAll());
     }
 
@@ -80,10 +60,6 @@ public class IntegrationTests {
         BigInteger studentId = studentService.findByLastFirstName(lastName, firstName).getId();
         studentService.deleteStudent(studentId);
         assertNull(studentService.getStudentById(studentId));
-    }
-
-    private void cleanDb(){
-        studentService.dropCollection();
     }
 
 }

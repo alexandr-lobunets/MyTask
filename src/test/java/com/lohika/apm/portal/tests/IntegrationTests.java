@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         properties = {
-        "spring.data.mongodb.uri=mongodb://localhost:27017/portal"}
+        "spring.data.mongodb.uri=mongodb://mongodb:27017/portal"}
         )
 public class IntegrationTests {
 

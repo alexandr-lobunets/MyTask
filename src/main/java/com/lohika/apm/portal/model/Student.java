@@ -34,12 +34,20 @@ public class Student {
         this.courses = courses;
     }
 
+//    @Override
+//    public String toString() {
+//        return String.format(
+//                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s', cources='%s']",
+//                id, firstName, lastName,
+//                birthDate, courses.stream().map(Object::toString).collect(Collectors.joining(", ")));
+//    }
     @Override
     public String toString() {
         return String.format(
-                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s', cources='%s']",
+                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s'",
                 id, firstName, lastName,
-                birthDate, courses.stream().map(Object::toString).collect(Collectors.joining(", ")));
+                birthDate
+        );
     }
 
     public List<Course> getCourses() {

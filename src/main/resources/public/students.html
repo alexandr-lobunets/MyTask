@@ -2,24 +2,36 @@
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+    <script src="./js/scripts.js"></script>
 
 </head>
 <body>
-<script src="./js/scripts.js"></script>
 
-<div ng-app="myApp" ng-controller="studentsCtrl">
 
-    <table>
+<div class="container" ng-app="myApp" ng-controller="studentsCtrl">
+
+    <table class="table">
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Gender</th>
+            <th>Birth</th>
+            <th>Grades</th>
+        </tr>
 
         <tr ng-repeat="x in students">
             <td>{{ x.firstName }}</td>
             <td>{{ x.firstName }}</td>
             <td>{{ x.gender }}</td>
             <td>{{ x.birthDate }}</td>
-            <td>{{ x.courses }}</td>
+            <td>
+                <div ng-repeat="course in x.courses"> {{course.name}} : {{course.grade}} </div>
+            </td>
         </tr>
     </table>
 

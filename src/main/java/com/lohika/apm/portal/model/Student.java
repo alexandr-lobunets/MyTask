@@ -1,14 +1,19 @@
 package com.lohika.apm.portal.model;
 
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.lohika.apm.portal.utils.JsonDateDeserializer;
+import com.lohika.apm.portal.utils.JsonDateSerializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Document(collection = "students")
 public class Student {
@@ -21,6 +26,8 @@ public class Student {
     @Field("lastName")
     private String lastName;
     private String gender;
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate birthDate;
 
     private List<Course> courses;
@@ -34,21 +41,14 @@ public class Student {
         this.courses = courses;
     }
 
-//    @Override
-//    public String toString() {
-//        return String.format(
-//                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s', cources='%s']",
-//                id, firstName, lastName,
-//                birthDate, courses.stream().map(Object::toString).collect(Collectors.joining(", ")));
-//    }
     @Override
     public String toString() {
         return String.format(
-                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s'",
+                "Student [id=%s, firstName='%s', lastName='%s', birthDate='%s', cources='%s']",
                 id, firstName, lastName,
-                birthDate
-        );
+                birthDate, courses.stream().map(Object::toString).collect(Collectors.joining(", ")));
     }
+
 
     public List<Course> getCourses() {
         return this.courses;

@@ -1,7 +1,6 @@
-package com.lohika.apm.portal;
+package com.lohika.apm.portal.controller;
 
 import com.lohika.apm.portal.model.Student;
-//import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,8 +55,4 @@ public class MainController {
         studentService.deleteStudent(id);
         return "redirect:/studentmng";
     }
-
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/login").setViewName("login");
-//    }
 }

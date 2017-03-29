@@ -2,7 +2,6 @@ package com.lohika.apm.portal;
 
 import com.lohika.apm.portal.model.Course;
 import com.lohika.apm.portal.model.Student;
-import com.lohika.apm.portal.services.CourseService;
 import com.lohika.apm.portal.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
